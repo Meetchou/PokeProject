@@ -1,41 +1,14 @@
-import React, { useEffect, useState } from "react";
-import PaginationElem from "../moleculs/Pagination";
-import Grid from "../organisms/Grid";
+import React from "react";
+import Pokedex from "../organisms/Pokedex";
+import PageLayout from "../organisms/PageLayout";
 
-type dataT = {
-    count: number,
-    next: string|null,
-    previous: string|null,
-    results: {name:string, url:string}[]
-};
+const PokedexPage: React.FC<any> = () => {
 
-const Pokedex: React.FC<any> = () => {
-    const [data, setData] = useState<dataT>();
-    const [loading, setLoading] = useState<boolean>(false);
-    const [currentPage, setCurrentPage] = useState<string>("https://pokeapi.co/api/v2/pokemon?offset=0&limit=12")
-    
-
-	useEffect(() => {
-        setLoading(true);
-		fetch(currentPage)
-        .then(response => response.json())
-        .then(data => setData(data));
-        setLoading(false);
-	}, [currentPage])
-
-	return (
-		<>
-            {
-            !loading && data ? 
-            <>
-                <Grid pokemons={data.results}/>  
-                <PaginationElem setCurrentPage={setCurrentPage} total={data.count}/>
-            </> :
-            <div>LOADING ...</div>
-            }
-            
-		</>
-	);
+        return (
+            <PageLayout>
+                <Pokedex/>
+            </PageLayout>
+    );
 }
 
-export default Pokedex;
+export default PokedexPage;

@@ -1,12 +1,14 @@
 import './App.css';
-import Pokedex from './Page/PokedexPage';
 import { Routes, Route } from "react-router-dom";
-import PokemonInfoPage from './Page/PokemonInfoPage.tsx'
+import PokemonInfoPage from './Page/PokemonInfoPage'
+import Page404 from './Page/Page404';
+import PokedexPage from './Page/PokedexPage';
 
 function App() {
 	return (
 		<Routes>
-			<Route path="/" element={<Pokedex />} />
+			<Route path="/" element={<PokedexPage />} />
+			<Route path="/404" element={<Page404 />} />
 			<Route path='/pokemon/:name' element={<PokemonInfoPage/>}/>
 		</Routes>
 	);
